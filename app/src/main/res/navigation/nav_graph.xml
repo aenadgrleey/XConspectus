@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.xconspectus.ui.home.HomeFragment"
+        android:label="@string/home_fragment_label"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/to_refactor_subject"
+            app:destination="@id/refactorSubject" />
+        <argument
+            android:name="subject"
+            android:defaultValue="@null"
+            app:argType="com.example.xconspectus.data.SubjectDB"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_home_to_subjectFragment"
+            app:destination="@id/subjectFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/home"></action>
+
+    </fragment>
+    <dialog
+        android:id="@+id/refactorSubject"
+        android:name="com.example.xconspectus.ui.dialogs.RefactorSubject"
+        android:label="RefactorSubject"
+        tools:layout="@layout/refactor_subject_dialog">
+        <action
+            android:id="@+id/to_home_fragment"
+            app:destination="@id/home" />
+        <argument
+            android:name="subject"
+            android:defaultValue="@null"
+            app:argType="com.example.xconspectus.data.SubjectDB"
+            app:nullable="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/subjectFragment"
+        android:name="com.example.xconspectus.ui.subject.SubjectFragment"
+        android:label="SubjectFragment"
+        tools:layout="@layout/subject_fragment">
+        <action
+            android:id="@+id/to_subject_refactor"
+            app:destination="@id/refactorSubject" />
+        <argument
+            android:name="subject_id"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+    <dialog
+        android:id="@+id/refactorTheme"
+        android:name="com.example.xconspectus.ui.dialogs.RefactorTheme"
+        android:label="RefactorTheme"
+        tools:layout="@layout/refactor_subject_dialog">
+        <action
+            android:id="@+id/to_subject_fragment"
+            app:destination="@id/subjectFragment" />
+        <argument
+            android:name="theme"
+            app:argType="com.example.xconspectus.data.ThemeDB"
+            app:nullable="false" />
+    </dialog>
+
+
+</navigation>
