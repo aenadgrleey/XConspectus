@@ -1,22 +1,26 @@
 package com.example.xconspectus.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.xconspectus.R
 import com.example.xconspectus.data.SubjectDB
 import com.example.xconspectus.databinding.HomeFragmentItemBinding
 
-class MyHomeRecyclerViewAdapter(private val parent: View) : RecyclerView.Adapter<MyHomeRecyclerViewAdapter.ViewHolder>() {
+class MyHomeRecyclerViewAdapter(private val fragment: HomeFragment, private val parent: View) :
+    RecyclerView.Adapter<MyHomeRecyclerViewAdapter.ViewHolder>() {
 
     private var subjects: List<SubjectDB> = listOf()
 
-    inner class ViewHolder(binding: HomeFragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: HomeFragmentItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         val subjectName: TextView = binding.content
-        val subjectNumber : TextView = binding.itemNumber
-        val mainView : View = binding.mainView
+        val subjectNumber: TextView = binding.itemNumber
+        val mainView: View = binding.mainView
 
     }
 
@@ -34,9 +38,13 @@ class MyHomeRecyclerViewAdapter(private val parent: View) : RecyclerView.Adapter
         val item = subjects[position]
         holder.subjectNumber.text = "#" + item.id.toString()
         holder.subjectName.text = item.name
-        holder.mainView.setOnClickListener(){
+        holder.mainView.setOnClickListener() {
             val action = HomeFragmentDirections.actionHomeToSubjectFragment(item.id)
             parent.findNavController().navigate(action)
+        }
+        holder.mainView.setOnLongClickListener() {
+            fragment.changeSubjectRequest(item, position)
+            return@setOnLongClickListener true
         }
     }
 

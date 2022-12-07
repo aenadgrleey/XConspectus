@@ -22,7 +22,7 @@
             android:id="@+id/action_home_to_subjectFragment"
             app:destination="@id/subjectFragment"
             app:launchSingleTop="false"
-            app:popUpTo="@id/home"></action>
+            app:popUpTo="@id/home" />
 
     </fragment>
     <dialog

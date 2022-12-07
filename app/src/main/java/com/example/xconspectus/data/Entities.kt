@@ -14,7 +14,7 @@ data class SubjectDB(
     val id: Int,
     @ColumnInfo(name = "name")
     var name: String
-) : Parcelable {}
+) : Parcelable
 
 @Parcelize
 @Entity(tableName = "themes")
@@ -26,4 +26,4 @@ data class ThemeDB(
     var name: String,
     @ColumnInfo(name="subjectId")
     val subjectId: Int
-) : Parcelable {}
+) : Parcelable

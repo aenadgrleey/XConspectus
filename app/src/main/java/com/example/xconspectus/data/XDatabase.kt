@@ -1,12 +1,9 @@
 package com.example.xconspectus.data
 
 import android.content.Context
-import androidx.room.AutoMigration
 import androidx.room.Database
-import androidx.room.RenameColumn
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.AutoMigrationSpec
 
 @Database(
     entities = [SubjectDB::class, ThemeDB::class],
@@ -23,7 +20,7 @@ abstract class XDatabase : RoomDatabase() {
         @Volatile
         var INSTANCE: XDatabase? = null
 
-        fun getDatabase(context: Context): XDatabase? {
+        fun getDatabase(context: Context): XDatabase {
             val temporaryInstance = INSTANCE
             if (temporaryInstance != null) {
                 return temporaryInstance

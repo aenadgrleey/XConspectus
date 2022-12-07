@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.xconspectus.data.SubjectDB
 import com.example.xconspectus.data.ThemeDB
 import com.example.xconspectus.databinding.SubjectFragmentItemBinding
 
 class MySubjectRecyclerViewAdapter : RecyclerView.Adapter<MySubjectRecyclerViewAdapter.ViewHolder>() {
-    var themes : List<ThemeDB> = listOf()
+    private var themes : List<ThemeDB> = listOf()
     inner class ViewHolder(binding: SubjectFragmentItemBinding) : RecyclerView.ViewHolder(binding.root){
         val themeNumber : TextView = binding.itemNumber
         val themeName : TextView = binding.content

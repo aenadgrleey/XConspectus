@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.xconspectus.data.SubjectDB
 import com.example.xconspectus.databinding.NavigationDrawerItemBinding
 
-class MyNavigationDrawerSubjectRecyclerViewAdapter() :
+class MyNavigationDrawerSubjectRecyclerViewAdapter :
     RecyclerView.Adapter<MyNavigationDrawerSubjectRecyclerViewAdapter.ViewHolder>() {
 
     private var subjects: List<SubjectDB> = listOf()
@@ -18,12 +18,12 @@ class MyNavigationDrawerSubjectRecyclerViewAdapter() :
     }
 
     override fun getItemCount(): Int {
-        return subjects?.size ?: 0
+        return subjects.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = subjects?.get(position)
-        holder.subjectName.text = item?.name ?: "0"
+        val item = subjects.get(position)
+        holder.subjectName.text = item.name ?: "0"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

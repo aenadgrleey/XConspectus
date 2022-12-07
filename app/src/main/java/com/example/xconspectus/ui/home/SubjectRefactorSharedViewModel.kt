@@ -1,24 +1,40 @@
 package com.example.xconspectus.ui.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.xconspectus.data.SubjectDB
 
 class SubjectRefactorSharedViewModel : ViewModel() {
-    private var _refactored : Boolean = false
-    val refactored : Boolean get() = _refactored
-    private var subjectDB : SubjectDB? = null
+    private val _refactored = MutableLiveData(false)
+    val refactored: LiveData<Boolean> get() = _refactored
+    private var _newlyAdded = false
+    val newlyAdded get() = _newlyAdded
+    private var _subjectDB: SubjectDB = SubjectDB(0, "")
+    val subjectDB get() = _subjectDB
+    private var _position = 0
+    val position get() = _position
 
-    fun subjectRefactored(subjectDB: SubjectDB){
-        this.subjectDB = subjectDB
-        _refactored = true
+    fun subjectRefactored() {
+        _refactored.value = true
     }
 
-    fun setSubjectToRefactor(subjectDB: SubjectDB){
-        this.subjectDB = subjectDB
+    fun setSubjectToRefactor(subjectDB: SubjectDB, position: Int) {
+        this._subjectDB = subjectDB
+        _position = position
     }
 
-    fun getSubject(): SubjectDB? {
-        _refactored = false
-        return subjectDB
+    fun actionsDone() {
+        _refactored.value = false
+        _newlyAdded = false
+    }
+
+    fun refactorSubjectName(name: String) {
+        _subjectDB.name = name
+    }
+
+    fun newSubject() {
+        _subjectDB = SubjectDB(0, "")
+        _newlyAdded = true
     }
 }

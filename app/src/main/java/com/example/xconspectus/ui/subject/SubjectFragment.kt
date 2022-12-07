@@ -52,17 +52,12 @@ class SubjectFragment : Fragment() {
         return binding.root
     }
 
-    fun setObservers() {
+    private fun setObservers() {
         viewModel.themes.observe(viewLifecycleOwner) {
             adapterToSet.setData(it)
         }
 
     }
 
-    fun setListeners() {
-        binding.fab.setOnClickListener() {
-        }
-    }
 
-    
 }
