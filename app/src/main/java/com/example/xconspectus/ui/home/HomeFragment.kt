@@ -1,7 +1,6 @@
 package com.example.xconspectus.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,8 +19,10 @@ import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
+
     private lateinit var binding: HomeFragmentBinding
     private lateinit var adapterToSet: MyHomeRecyclerViewAdapter
+
     private val viewModel: HomeFragmentViewModel by viewModels()
     private val sharedViewModel: SubjectRefactorSharedViewModel by activityViewModels()
 

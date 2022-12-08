@@ -2,7 +2,6 @@ package com.example.xconspectus.ui.dialogs
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +12,10 @@ import androidx.fragment.app.activityViewModels
 import com.example.xconspectus.R
 import com.example.xconspectus.data.SubjectDB
 import com.example.xconspectus.databinding.RefactorSubjectDialogBinding
-import com.example.xconspectus.ui.MainActivity
 import com.example.xconspectus.ui.home.SubjectRefactorSharedViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
 
 class RefactorSubject : BottomSheetDialogFragment() {
     private lateinit var binding: RefactorSubjectDialogBinding
@@ -54,7 +51,7 @@ class RefactorSubject : BottomSheetDialogFragment() {
 
     private fun insertSubject() {
         with(binding.addItem.text.toString()) {
-            if(this != null || this != "") {
+            if (this != "") {
                 viewModel.refactorSubjectName(this)
                 viewModel.subjectRefactored()
                 dialog!!.dismiss()
@@ -64,9 +61,7 @@ class RefactorSubject : BottomSheetDialogFragment() {
 
     private fun getSubjectToRefactor() {
         subject = viewModel.subjectDB
-        if (subject != null) {
-            binding.addItem.setText(subject!!.name)
-        }
+        binding.addItem.setText(subject!!.name)
     }
 }
 

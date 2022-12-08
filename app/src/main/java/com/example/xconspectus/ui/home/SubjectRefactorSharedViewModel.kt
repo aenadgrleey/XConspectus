@@ -8,10 +8,13 @@ import com.example.xconspectus.data.SubjectDB
 class SubjectRefactorSharedViewModel : ViewModel() {
     private val _refactored = MutableLiveData(false)
     val refactored: LiveData<Boolean> get() = _refactored
+
     private var _newlyAdded = false
     val newlyAdded get() = _newlyAdded
+
     private var _subjectDB: SubjectDB = SubjectDB(0, "")
     val subjectDB get() = _subjectDB
+
     private var _position = 0
     val position get() = _position
 
