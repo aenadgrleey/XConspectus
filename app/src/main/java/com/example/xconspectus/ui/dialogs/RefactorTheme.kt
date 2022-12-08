@@ -26,7 +26,7 @@ class RefactorTheme : BottomSheetDialogFragment() {
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         binding.addItem.text = null
-        binding.addItem.setOnEditorActionListener(){ _, actionId, _ ->
+        binding.addItem.setOnEditorActionListener { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 this.insertTheme()
                 this.onDestroy()

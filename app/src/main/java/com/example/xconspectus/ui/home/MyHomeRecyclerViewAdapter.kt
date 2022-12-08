@@ -38,12 +38,12 @@ class MyHomeRecyclerViewAdapter(private val fragment: HomeFragment, private val 
         val item = subjects[position]
         holder.subjectNumber.text = "#" + item.id.toString()
         holder.subjectName.text = item.name
-        holder.mainView.setOnClickListener() {
+        holder.mainView.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeToSubjectFragment(item.id)
             parent.findNavController().navigate(action)
         }
-        holder.mainView.setOnLongClickListener() {
-            fragment.changeSubjectRequest(item, position)
+        holder.mainView.setOnLongClickListener {
+            fragment.changeSubjectRequest(item)
             return@setOnLongClickListener true
         }
     }

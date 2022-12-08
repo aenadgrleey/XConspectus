@@ -23,7 +23,7 @@ class MyNavigationDrawerSubjectRecyclerViewAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = subjects.get(position)
-        holder.subjectName.text = item.name ?: "0"
+        holder.subjectName.text = item.name
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

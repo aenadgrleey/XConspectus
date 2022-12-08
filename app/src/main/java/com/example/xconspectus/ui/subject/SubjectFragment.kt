@@ -21,10 +21,6 @@ class SubjectFragment : Fragment() {
     private val adapterToSet = MySubjectRecyclerViewAdapter()
     private lateinit var viewModel: SubjectFragmentViewModel
     private val args: SubjectFragmentArgs by navArgs()
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

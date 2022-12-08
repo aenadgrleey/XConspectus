@@ -27,17 +27,13 @@ class RefactorSubject : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = RefactorSubjectDialogBinding.inflate(inflater)
-        getSubjectToRefactor()
+        setSubjectAttributes()
         binding.addItem.hint = "Add item"
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        binding.addItem.setOnEditorActionListener() { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                this.insertSubject()
-                true
-            } else {
-                false
-            }
+        binding.addItem.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) this.insertSubject()
+            true
         }
         return binding.root
 
@@ -50,19 +46,19 @@ class RefactorSubject : BottomSheetDialogFragment() {
     }
 
     private fun insertSubject() {
-        with(binding.addItem.text.toString()) {
-            if (this != "") {
-                viewModel.refactorSubjectName(this)
-                viewModel.subjectRefactored()
-                dialog!!.dismiss()
-            }
+        val name = binding.addItem.text.toString()
+        if (checkName(name)) {
+            viewModel.updateSubject(name)
+            dialog!!.dismiss()
         }
     }
 
-    private fun getSubjectToRefactor() {
-        subject = viewModel.subjectDB
+    private fun setSubjectAttributes() {
+        subject = viewModel.subjectDB.value
         binding.addItem.setText(subject!!.name)
     }
+
+    private fun checkName(name: String) = name != ""
 }
 
 

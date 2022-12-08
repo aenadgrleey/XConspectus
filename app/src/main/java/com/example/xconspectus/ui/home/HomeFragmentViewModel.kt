@@ -15,19 +15,15 @@ class HomeFragmentViewModel(application: Application) : AndroidViewModel(applica
 
     val subjects: LiveData<List<SubjectDB>> = repository.subjects
 
-    fun addSubject(subjectDB: SubjectDB?) {
-        if (subjectDB != null) {
+    fun addSubject(subjectDB: SubjectDB) {
+        if (checkSubject(subjectDB)) {
             viewModelScope.launch(Dispatchers.IO) {
                 repository.addSubject(subjectDB)
             }
         }
     }
 
-    fun updateSubject(subjectDB: SubjectDB){
-        viewModelScope.launch((Dispatchers.IO)){
-            repository.updateSubject(subjectDB)
-        }
-    }
+    private fun checkSubject(subjectDB: SubjectDB) = subjectDB.name != ""
 
 
 }

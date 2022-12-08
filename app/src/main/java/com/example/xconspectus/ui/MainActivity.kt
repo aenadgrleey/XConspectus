@@ -91,5 +91,4 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-class XConspectus : Application() {
-}
+class XConspectus : Application()

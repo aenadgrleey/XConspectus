@@ -44,11 +44,8 @@ class HomeFragment : Fragment() {
             }
         }
 
-
-
         setObservers()
         setListeners()
-
 
         return binding.root
     }
@@ -59,27 +56,22 @@ class HomeFragment : Fragment() {
             adapterToSet.setData(it)
         }
 
-        sharedViewModel.refactored.observe(viewLifecycleOwner) {
-            if (sharedViewModel.newlyAdded) {
-                viewModel.addSubject(sharedViewModel.subjectDB)
-                sharedViewModel.actionsDone()
-            } else if(it) {
-                viewModel.updateSubject(sharedViewModel.subjectDB)
-                sharedViewModel.actionsDone()
-            }
+        sharedViewModel.subjectDB.observe(viewLifecycleOwner) {
+            viewModel.addSubject(it)
         }
     }
 
 
     private fun setListeners() {
         binding.fab.setOnClickListener {
-            sharedViewModel.newSubject()
+            sharedViewModel.setNewSubject()
             findNavController().navigate(R.id.refactorSubject)
         }
     }
 
-    fun changeSubjectRequest(subject: SubjectDB, position: Int) {
-        sharedViewModel.setSubjectToRefactor(subject, position)
+    fun changeSubjectRequest(subject: SubjectDB) {
+        sharedViewModel.setSubjectToRefactor(subject)
         findNavController().navigate(R.id.refactorSubject)
     }
+
 }
