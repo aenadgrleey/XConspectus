@@ -20,7 +20,8 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: HomeFragmentBinding
+    private lateinit var _binding: HomeFragmentBinding
+    val binding: HomeFragmentBinding get() =  _binding
     private lateinit var adapterToSet: MyHomeRecyclerViewAdapter
 
     private val viewModel: HomeFragmentViewModel by viewModels()
@@ -29,13 +30,13 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = HomeFragmentBinding.inflate(inflater)
+        _binding = HomeFragmentBinding.inflate(inflater)
 
-        adapterToSet = MyHomeRecyclerViewAdapter(this, binding.root)
+        adapterToSet = MyHomeRecyclerViewAdapter(this)
 
         this.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                with(binding.list) {
+                with(_binding.list) {
                     adapterToSet.setData(viewModel.subjects.value)
                     adapter = adapterToSet
                     layoutManager = LinearLayoutManager(context)
@@ -47,15 +48,16 @@ class HomeFragment : Fragment() {
         setObservers()
         setListeners()
 
-        return binding.root
+        return _binding.root
     }
 
     private fun setObservers() {
-
+        //observe subjects to detect change in database
         viewModel.subjects.observe(viewLifecycleOwner) {
             adapterToSet.setData(it)
         }
-
+        //observe refactoring subject to detect changes
+        //maybe should be function
         sharedViewModel.subjectDB.observe(viewLifecycleOwner) {
             viewModel.addSubject(it)
         }
@@ -63,13 +65,14 @@ class HomeFragment : Fragment() {
 
 
     private fun setListeners() {
-        binding.fab.setOnClickListener {
+        //set up "add new" button
+        _binding.fab.setOnClickListener {
             sharedViewModel.setNewSubject()
             findNavController().navigate(R.id.refactorSubject)
         }
     }
 
-    fun changeSubjectRequest(subject: SubjectDB) {
+    fun changeSubject(subject: SubjectDB) {
         sharedViewModel.setSubjectToRefactor(subject)
         findNavController().navigate(R.id.refactorSubject)
     }

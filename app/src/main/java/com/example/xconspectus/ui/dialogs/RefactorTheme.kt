@@ -8,26 +8,33 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import com.example.xconspectus.R
 import com.example.xconspectus.databinding.RefactorSubjectDialogBinding
+import com.example.xconspectus.ui.subject.ThemeRefactorSharedViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class RefactorTheme : BottomSheetDialogFragment() {
     private lateinit var binding: RefactorSubjectDialogBinding
+
+    private val viewModel: ThemeRefactorSharedViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = RefactorSubjectDialogBinding.inflate(inflater)
+        setThemeAttributes()
         binding.addItem.hint = "Add item"
+
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        binding.addItem.text = null
+
         binding.addItem.setOnEditorActionListener { _, actionId, _ ->
-            if(actionId == EditorInfo.IME_ACTION_DONE){
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 this.insertTheme()
                 this.onDestroy()
                 true
@@ -45,6 +52,20 @@ class RefactorTheme : BottomSheetDialogFragment() {
         return dialog
     }
 
-    private fun insertTheme(){
+    private fun insertTheme() {
+        val name = binding.addItem.text.toString()
+        if (checkName(name)) {
+            viewModel.updateTheme(name)
+            dialog!!.dismiss()
+        }
+
     }
+
+    private fun setThemeAttributes() {
+        val theme = viewModel.themeDB.value
+        binding.addItem.setText(theme!!.name)
+    }
+
+    private fun checkName(name: String) = name != ""
+
 }

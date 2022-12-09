@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.xconspectus.data.ThemeDB
 import com.example.xconspectus.databinding.SubjectFragmentItemBinding
 
-class MySubjectRecyclerViewAdapter : RecyclerView.Adapter<MySubjectRecyclerViewAdapter.ViewHolder>() {
+class MySubjectRecyclerViewAdapter(val parentFragment: SubjectFragment) : RecyclerView.Adapter<MySubjectRecyclerViewAdapter.ViewHolder>() {
     private var themes : List<ThemeDB> = listOf()
     inner class ViewHolder(binding: SubjectFragmentItemBinding) : RecyclerView.ViewHolder(binding.root){
         val themeNumber : TextView = binding.itemNumber
@@ -22,8 +22,16 @@ class MySubjectRecyclerViewAdapter : RecyclerView.Adapter<MySubjectRecyclerViewA
 
     override fun onBindViewHolder(holder: MySubjectRecyclerViewAdapter.ViewHolder, position: Int) {
         val item = themes[position]
+
+        //set up item view
         holder.themeName.text = item.name
         holder.themeNumber.text = item.id.toString()
+
+        //set up theme refactoring
+        holder.itemView.setOnLongClickListener{
+            parentFragment.changeTheme(item)
+            return@setOnLongClickListener true
+        }
     }
 
     override fun getItemCount(): Int {

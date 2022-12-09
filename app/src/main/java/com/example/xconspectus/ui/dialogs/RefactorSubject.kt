@@ -10,7 +10,6 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.xconspectus.R
-import com.example.xconspectus.data.SubjectDB
 import com.example.xconspectus.databinding.RefactorSubjectDialogBinding
 import com.example.xconspectus.ui.home.SubjectRefactorSharedViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -19,8 +18,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class RefactorSubject : BottomSheetDialogFragment() {
     private lateinit var binding: RefactorSubjectDialogBinding
+
     private val viewModel: SubjectRefactorSharedViewModel by activityViewModels()
-    private var subject: SubjectDB? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,7 +53,7 @@ class RefactorSubject : BottomSheetDialogFragment() {
     }
 
     private fun setSubjectAttributes() {
-        subject = viewModel.subjectDB.value
+        val subject = viewModel.subjectDB.value
         binding.addItem.setText(subject!!.name)
     }
 

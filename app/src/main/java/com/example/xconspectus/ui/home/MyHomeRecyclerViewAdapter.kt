@@ -1,17 +1,15 @@
 package com.example.xconspectus.ui.home
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.xconspectus.R
 import com.example.xconspectus.data.SubjectDB
 import com.example.xconspectus.databinding.HomeFragmentItemBinding
 
-class MyHomeRecyclerViewAdapter(private val fragment: HomeFragment, private val parent: View) :
+class MyHomeRecyclerViewAdapter(private val parentFragment: HomeFragment) :
     RecyclerView.Adapter<MyHomeRecyclerViewAdapter.ViewHolder>() {
 
     private var subjects: List<SubjectDB> = listOf()
@@ -36,14 +34,20 @@ class MyHomeRecyclerViewAdapter(private val fragment: HomeFragment, private val 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = subjects[position]
+
+        //set up item view
         holder.subjectNumber.text = "#" + item.id.toString()
         holder.subjectName.text = item.name
+
+        //set up navigation to subject's themes
         holder.mainView.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeToSubjectFragment(item.id)
-            parent.findNavController().navigate(action)
+            parentFragment.binding.root.findNavController().navigate(action)
         }
+
+        //set up subject refactoring
         holder.mainView.setOnLongClickListener {
-            fragment.changeSubjectRequest(item)
+            parentFragment.changeSubject(item)
             return@setOnLongClickListener true
         }
     }
