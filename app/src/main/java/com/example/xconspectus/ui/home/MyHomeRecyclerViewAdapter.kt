@@ -41,8 +41,8 @@ class MyHomeRecyclerViewAdapter(private val parentFragment: HomeFragment) :
 
         //set up navigation to subject's themes
         holder.mainView.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToSubjectFragment(item.id)
-            parentFragment.binding.root.findNavController().navigate(action)
+            val action = HomeFragmentDirections.actionHomeToSubjectFragment(item.id!!)
+            parentFragment.requireView().findNavController().navigate(action)
         }
 
         //set up subject refactoring

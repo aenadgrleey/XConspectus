@@ -12,8 +12,10 @@ class SubjectFragmentViewModel(private val repository: ThemesRepository) : ViewM
     var themes = repository.themes
 
     fun addTheme(themeDB: ThemeDB) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.addTheme(themeDB)
+        if (attributesCheck(themeDB)) {
+            viewModelScope.launch(Dispatchers.IO) {
+                repository.addTheme(themeDB)
+            }
         }
     }
 
@@ -23,4 +25,6 @@ class SubjectFragmentViewModel(private val repository: ThemesRepository) : ViewM
             return SubjectFragmentViewModel(repository) as T
         }
     }
+
+    private fun attributesCheck(themeDB: ThemeDB) : Boolean = themeDB.name != ""
 }

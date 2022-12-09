@@ -16,14 +16,14 @@ class HomeFragmentViewModel(application: Application) : AndroidViewModel(applica
     val subjects: LiveData<List<SubjectDB>> = repository.subjects
 
     fun addSubject(subjectDB: SubjectDB) {
-        if (checkSubject(subjectDB)) {
+        if (checkAttributes(subjectDB)) {
             viewModelScope.launch(Dispatchers.IO) {
                 repository.addSubject(subjectDB)
             }
         }
     }
 
-    private fun checkSubject(subjectDB: SubjectDB) = subjectDB.name != ""
+    private fun checkAttributes(subjectDB: SubjectDB) = subjectDB.name != ""
 
 
 }

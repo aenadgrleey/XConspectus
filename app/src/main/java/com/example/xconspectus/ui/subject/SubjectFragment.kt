@@ -25,7 +25,7 @@ class SubjectFragment : Fragment() {
     private val adapterToSet = MySubjectRecyclerViewAdapter(this)
 
     private lateinit var viewModel: SubjectFragmentViewModel
-    val sharedViewModel : ThemeRefactorSharedViewModel by activityViewModels()
+    private val sharedViewModel : ThemeRefactorSharedViewModel by activityViewModels()
 
     private val args: SubjectFragmentArgs by navArgs()
     private var subjectId: Int =  0
@@ -65,8 +65,11 @@ class SubjectFragment : Fragment() {
 
         //observe refactoring theme to detect changes
         //maybe should be function
-        sharedViewModel.themeDB.observe(viewLifecycleOwner){
-            viewModel.addTheme(it)
+        sharedViewModel.refactored.observe(viewLifecycleOwner){
+            if(it){
+                viewModel.addTheme(sharedViewModel.themeDB!!)
+                sharedViewModel.onAdd()
+            }
         }
     }
 

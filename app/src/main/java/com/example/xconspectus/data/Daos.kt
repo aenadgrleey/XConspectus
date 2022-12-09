@@ -13,7 +13,7 @@ interface SubjectDao {
     fun loadSubjects(): LiveData<List<SubjectDB>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addSubject(subject: SubjectDB) : Long
+    fun addSubject(subject: SubjectDB): Long
 
 }
 
@@ -25,4 +25,14 @@ interface ThemeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addTheme(theme: ThemeDB)
+}
+
+@Dao
+interface ChapterDao {
+
+    @Query("SELECT *, `rowId` FROM chapters WHERE themeId=:themeId")
+    fun getThemeChapter(themeId: Int): LiveData<List<ChapterDB>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addChapter(chapter: ChapterDB)
 }

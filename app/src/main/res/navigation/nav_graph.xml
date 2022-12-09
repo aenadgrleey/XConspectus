@@ -29,16 +29,7 @@
         android:id="@+id/refactorSubject"
         android:name="com.example.xconspectus.ui.dialogs.RefactorSubject"
         android:label="RefactorSubject"
-        tools:layout="@layout/refactor_subject_dialog">
-        <action
-            android:id="@+id/to_home_fragment"
-            app:destination="@id/home" />
-        <argument
-            android:name="subject"
-            android:defaultValue="@null"
-            app:argType="com.example.xconspectus.data.SubjectDB"
-            app:nullable="true" />
-    </dialog>
+        tools:layout="@layout/refactor_subject_dialog" />
     <fragment
         android:id="@+id/subjectFragment"
         android:name="com.example.xconspectus.ui.subject.SubjectFragment"
@@ -51,20 +42,46 @@
             android:name="subject_id"
             app:argType="integer"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_subjectFragment_to_themeFragment"
+            app:destination="@id/themeFragment" />
     </fragment>
     <dialog
         android:id="@+id/refactorTheme"
         android:name="com.example.xconspectus.ui.dialogs.RefactorTheme"
         android:label="RefactorTheme"
-        tools:layout="@layout/refactor_subject_dialog">
-        <action
-            android:id="@+id/to_subject_fragment"
-            app:destination="@id/subjectFragment" />
+        tools:layout="@layout/refactor_subject_dialog" />
+    <fragment
+        android:id="@+id/chapterFragment"
+        android:name="com.example.xconspectus.ui.chapter.ChapterFragment"
+        android:label="fragment_chapter"
+        tools:layout="@layout/chapter_fragment">
         <argument
-            android:name="theme"
-            app:argType="com.example.xconspectus.data.ThemeDB"
+            android:name="chapter_id"
+            app:argType="integer"
             app:nullable="false" />
-    </dialog>
+    </fragment>
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.example.xconspectus.ui.theme.ThemeFragment"
+        android:label="theme_fragment"
+        tools:layout="@layout/theme_fragment">
+        <action
+            android:id="@+id/action_themeFragment_to_chapterFragment"
+            app:destination="@id/chapterFragment" />
+        <argument
+            android:name="theme_id"
+            app:argType="integer"
+            app:nullable="false" />
+        <argument
+            android:name="subject_id"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+    <dialog
+        android:id="@+id/refactorChapter"
+        android:name="com.example.xconspectus.ui.dialogs.RefactorChapter"
+        android:label="RefactorChapter" />
 
 
 </navigation>

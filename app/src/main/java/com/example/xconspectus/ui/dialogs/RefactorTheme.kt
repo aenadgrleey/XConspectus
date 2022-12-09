@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class RefactorTheme : BottomSheetDialogFragment() {
+    //Using same layout as RefactorSubject
     private lateinit var binding: RefactorSubjectDialogBinding
 
     private val viewModel: ThemeRefactorSharedViewModel by activityViewModels()
@@ -62,7 +63,7 @@ class RefactorTheme : BottomSheetDialogFragment() {
     }
 
     private fun setThemeAttributes() {
-        val theme = viewModel.themeDB.value
+        val theme = viewModel.themeDB
         binding.addItem.setText(theme!!.name)
     }
 

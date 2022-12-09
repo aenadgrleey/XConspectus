@@ -20,8 +20,7 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private lateinit var _binding: HomeFragmentBinding
-    val binding: HomeFragmentBinding get() =  _binding
+    private lateinit var binding: HomeFragmentBinding
     private lateinit var adapterToSet: MyHomeRecyclerViewAdapter
 
     private val viewModel: HomeFragmentViewModel by viewModels()
@@ -30,14 +29,13 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = HomeFragmentBinding.inflate(inflater)
+        binding = HomeFragmentBinding.inflate(inflater)
 
         adapterToSet = MyHomeRecyclerViewAdapter(this)
 
         this.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                with(_binding.list) {
-                    adapterToSet.setData(viewModel.subjects.value)
+                with(binding.list) {
                     adapter = adapterToSet
                     layoutManager = LinearLayoutManager(context)
 
@@ -48,7 +46,7 @@ class HomeFragment : Fragment() {
         setObservers()
         setListeners()
 
-        return _binding.root
+        return binding.root
     }
 
     private fun setObservers() {
@@ -58,15 +56,18 @@ class HomeFragment : Fragment() {
         }
         //observe refactoring subject to detect changes
         //maybe should be function
-        sharedViewModel.subjectDB.observe(viewLifecycleOwner) {
-            viewModel.addSubject(it)
+        sharedViewModel.refactored.observe(viewLifecycleOwner) {
+            if (it) {
+                viewModel.addSubject(sharedViewModel.subjectDB!!)
+                sharedViewModel.onAdd()
+            }
         }
     }
 
 
     private fun setListeners() {
         //set up "add new" button
-        _binding.fab.setOnClickListener {
+        binding.fab.setOnClickListener {
             sharedViewModel.setNewSubject()
             findNavController().navigate(R.id.refactorSubject)
         }
