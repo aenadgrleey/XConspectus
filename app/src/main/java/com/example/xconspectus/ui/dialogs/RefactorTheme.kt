@@ -16,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+@Suppress("DEPRECATION")
 class RefactorTheme : BottomSheetDialogFragment() {
     //Using same layout as RefactorSubject
     private lateinit var binding: RefactorSubjectDialogBinding
@@ -30,10 +31,6 @@ class RefactorTheme : BottomSheetDialogFragment() {
         binding = RefactorSubjectDialogBinding.inflate(inflater)
         setThemeAttributes()
         binding.addItem.hint = "Add item"
-
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-
         binding.addItem.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 this.insertTheme()
@@ -50,6 +47,9 @@ class RefactorTheme : BottomSheetDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         return dialog
     }
 

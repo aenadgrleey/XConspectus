@@ -16,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+@Suppress("DEPRECATION")
 class RefactorChapter : BottomSheetDialogFragment() {
     //Using same layout as RefactorSubject
     private lateinit var binding: RefactorSubjectDialogBinding
@@ -42,6 +43,7 @@ class RefactorChapter : BottomSheetDialogFragment() {
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
         dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         return dialog
     }
 

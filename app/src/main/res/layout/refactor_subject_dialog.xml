@@ -19,7 +19,7 @@
         android:layout_marginRight="60dp"
         android:background="@drawable/grey_strip" />
 
-    <EditText
+    <android.inputmethodservice.ExtractEditText
         android:id="@+id/addItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
