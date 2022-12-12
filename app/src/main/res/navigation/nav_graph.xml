@@ -13,11 +13,6 @@
         <action
             android:id="@+id/to_refactor_subject"
             app:destination="@id/refactorSubject" />
-        <argument
-            android:name="subject"
-            android:defaultValue="@null"
-            app:argType="com.example.xconspectus.data.SubjectDB"
-            app:nullable="true" />
         <action
             android:id="@+id/action_home_to_subjectFragment"
             app:destination="@id/subjectFragment"

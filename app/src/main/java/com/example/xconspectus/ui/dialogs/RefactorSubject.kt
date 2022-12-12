@@ -19,8 +19,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 @Suppress("DEPRECATION")
 class RefactorSubject : BottomSheetDialogFragment() {
     private lateinit var binding: RefactorSubjectDialogBinding
-
     private val viewModel: SubjectRefactorSharedViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

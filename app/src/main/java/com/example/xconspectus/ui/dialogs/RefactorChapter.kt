@@ -11,10 +11,12 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.xconspectus.R
 import com.example.xconspectus.databinding.RefactorSubjectDialogBinding
+import com.example.xconspectus.ui.text_editor.TextEditor
 import com.example.xconspectus.ui.theme.ChapterRefactorSharedViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.refactor_subject_dialog.*
 
 @Suppress("DEPRECATION")
 class RefactorChapter : BottomSheetDialogFragment() {
@@ -43,7 +45,6 @@ class RefactorChapter : BottomSheetDialogFragment() {
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
         dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         return dialog
     }
 
