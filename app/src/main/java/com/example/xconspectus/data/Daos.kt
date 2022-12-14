@@ -36,3 +36,12 @@ interface ChapterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addChapter(chapter: ChapterDB)
 }
+
+@Dao
+interface ConspectusDao {
+    @Query("SELECT *, `rowId` FROM conspectuses WHERE chapterId=:chapterId")
+    fun getChapterConspectus(chapterId: Int): LiveData<List<ConspectusDB>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addConspectus(conspectusDB: ConspectusDB)
+}

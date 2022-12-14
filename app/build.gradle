@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id "kotlin-android"
     id("androidx.navigation.safeargs.kotlin")
-    id 'kotlin-android-extensions'
     id "kotlin-kapt"
     id 'com.google.devtools.ksp' version "$ksp_version"
 }
@@ -84,24 +83,13 @@ dependencies {
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$room_version")
 
-    // optional - RxJava2 support for Room
-    implementation("androidx.room:room-rxjava2:$room_version")
-
-    // optional - RxJava3 support for Room
-    implementation("androidx.room:room-rxjava3:$room_version")
-
-    // optional - Guava support for Room, including Optional and ListenableFuture
-    implementation("androidx.room:room-guava:$room_version")
-
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:$room_version")
-
 
     //Navigation:
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     def nav_version = "2.5.3"
-
 
     // Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
@@ -116,6 +104,7 @@ dependencies {
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
+    implementation 'com.github.alirezat775:carousel-view:1.1.1'
 
 }
 

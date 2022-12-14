@@ -2,6 +2,7 @@
     <string name="app_name">XConspectus</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <string name="underlined_u"><u>U</u></string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="home_fragment_label">Home</string>
@@ -100,4 +101,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="h">H</string>
 </resources>

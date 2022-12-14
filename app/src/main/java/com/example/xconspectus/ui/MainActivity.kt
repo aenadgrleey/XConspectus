@@ -16,8 +16,7 @@ import com.example.xconspectus.R
 import com.example.xconspectus.data.repositories.SubjectsRepository
 import com.example.xconspectus.databinding.ActivityMainBinding
 import com.example.xconspectus.ui.navdrawer.MyNavigationDrawerSubjectRecyclerViewAdapter
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.navigation_drawer.view.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         repository = SubjectsRepository(applicationContext)
 
         //Menu drawer define
-        drawerFilling(this, binding.mainNavView.navigationIncluded.navigation_menu_recycler_view)
+        drawerFilling(this, binding.navigationIncluded.navigationMenuRecyclerView)
         toggleActionBar =
             ActionBarDrawerToggle(this, binding.drawerLayout, R.string.nav_open, R.string.nav_close)
         binding.drawerLayout.addDrawerListener(toggleActionBar)

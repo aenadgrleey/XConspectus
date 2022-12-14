@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_editor"
+    app:startDestination="@id/textEditorToolbar">
+
+    <fragment
+        android:id="@+id/textEditorToolbar"
+        android:name="com.example.xconspectus.ui.text_editor.TextEditorToolbar"
+        android:label="TextEditorToolbar"
+        tools:layout="@layout/text_editor_toolbar">
+        <action
+            android:id="@+id/action_textEditorToolbar_to_sizeSelect"
+            app:destination="@id/sizeSelect" />
+    </fragment>
+    <fragment
+        android:id="@+id/sizeSelect"
+        android:name="com.example.xconspectus.ui.text_editor.SizeSelect"
+        android:label="SizeSelect"
+        tools:layout="@layout/text_editor_size_select"/>
+</navigation>

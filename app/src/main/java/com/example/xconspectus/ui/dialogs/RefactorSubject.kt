@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.xconspectus.R
 import com.example.xconspectus.databinding.RefactorSubjectDialogBinding
 import com.example.xconspectus.ui.home.SubjectRefactorSharedViewModel
+import com.example.xconspectus.ui.text_editor.TextEditor
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -33,6 +34,7 @@ class RefactorSubject : BottomSheetDialogFragment() {
             if (actionId == EditorInfo.IME_ACTION_DONE) this.insertSubject()
             true
         }
+        binding.addItem.addTextChangedListener(TextEditor(binding.addItem))
         return binding.root
 
     }
@@ -41,7 +43,7 @@ class RefactorSubject : BottomSheetDialogFragment() {
         val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         return dialog
     }

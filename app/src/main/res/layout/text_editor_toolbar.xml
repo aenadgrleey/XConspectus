@@ -1,24 +1,90 @@
-<androidx.appcompat.widget.Toolbar  xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/actionbarT"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?attr/actionBarSize"
-    app:theme="@style/Base.Theme.AppCompat.CompactMenu" >
+    android:fillViewport="true"
+    android:clickable="false">
 
     <LinearLayout
-        android:id="@+id/toolbarmenucontainer"
-        android:layout_width="match_parent"
-        android:weightSum="3"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
+        android:id="@+id/textEditor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:clickable="false"
+        android:backgroundTint="@color/yellow">
 
-        <ImageButton
+
+        <TextView
+            android:id="@+id/bold"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white_custom"
             android:clickable="true"
-            android:scaleType="fitXY"
-            android:layout_weight = "1"/>
+            android:gravity="center"
+            android:text="B"
+            android:textColor="@color/black_cstm"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/italic"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white_custom"
+            android:gravity="center"
+            android:text="I"
+            android:textColor="@color/black_cstm"
+            android:textSize="30sp"
+            android:textStyle="italic" />
+
+
+        <TextView
+            android:id="@+id/underscored"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white_custom"
+            android:gravity="center"
+            android:text="@string/underlined_u"
+            android:textColor="@color/black_cstm"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/highlight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white_custom"
+            android:gravity="center"
+            android:text="@string/h"
+            android:textColor="@color/black_cstm"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/size"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white_custom"
+            android:gravity="center"
+            android:text="S"
+            android:textColor="@color/black_cstm"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/subscription"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white_custom"
+            android:gravity="center"
+            android:text="SS"
+            android:textColor="@color/black_cstm"
+            android:textSize="30dp" />
+
     </LinearLayout>
 
-</androidx.appcompat.widget.Toolbar>
+</HorizontalScrollView>
+

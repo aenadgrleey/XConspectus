@@ -48,7 +48,7 @@ class RefactorTheme : BottomSheetDialogFragment() {
         val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         return dialog
     }

@@ -16,9 +16,8 @@ import com.example.xconspectus.ui.theme.ChapterRefactorSharedViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.refactor_subject_dialog.*
 
-@Suppress("DEPRECATION")
+
 class RefactorChapter : BottomSheetDialogFragment() {
     //Using same layout as RefactorSubject
     private lateinit var binding: RefactorSubjectDialogBinding
@@ -44,7 +43,6 @@ class RefactorChapter : BottomSheetDialogFragment() {
         val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
-        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         return dialog
     }
 

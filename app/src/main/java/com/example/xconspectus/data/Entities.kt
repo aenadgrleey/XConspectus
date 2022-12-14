@@ -10,7 +10,7 @@ data class SubjectDB(
     @ColumnInfo(name = "rowId")
     val id: Int? = null,
     @ColumnInfo(name = "name")
-    var name: String
+    var name: String,
 )
 
 @Entity(tableName = "themes")
@@ -21,7 +21,7 @@ data class ThemeDB(
     @ColumnInfo(name = "name")
     var name: String,
     @ColumnInfo(name = "subjectId")
-    val subjectId: Int
+    val subjectId: Int,
 )
 
 @Entity(tableName = "chapters")
@@ -31,8 +31,6 @@ data class ChapterDB(
     val id: Int? = null,
     @ColumnInfo(name = "name")
     var name: String,
-    @ColumnInfo(name = "subjectId")
-    val subjectId: Int,
     @ColumnInfo(name = "themeId")
     val themeId: Int
 )
@@ -44,11 +42,6 @@ data class ConspectusDB(
     val id: Int? = null,
     @ColumnInfo(name = "name")
     var name: String,
-    @ColumnInfo(name = "subjectId")
-    val subjectId: Int,
-    @ColumnInfo(name = "themeId")
-    val themeId: Int,
     @ColumnInfo(name = "chapterId")
-    val chapterId: Int
-
+    val chapterId: Int,
 )

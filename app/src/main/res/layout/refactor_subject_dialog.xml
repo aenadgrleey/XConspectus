@@ -19,9 +19,15 @@
         android:layout_marginRight="60dp"
         android:background="@drawable/grey_strip" />
 
-    <android.inputmethodservice.ExtractEditText
-        android:id="@+id/addItem"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/addItem"
+        android:layout_width="0dp"
+        android:layout_weight="5"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/edittext"
@@ -32,5 +38,6 @@
         android:minHeight="48dp"
         android:textColor="@color/black_cstm"
         android:textSize="20sp" />
+    </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

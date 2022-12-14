@@ -18,7 +18,7 @@ class ChapterRefactorSharedViewModel : ViewModel() {
 
     //set empty chapter to create new in database
     fun setNewChapter(themeId: Int, subjectId: Int){
-        _chapterDB = ChapterDB(null, "", subjectId, themeId)
+        _chapterDB = ChapterDB(null, "", themeId)
     }
 
     //refactor or set new subject attributes
